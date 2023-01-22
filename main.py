@@ -1,8 +1,7 @@
-import pygame
-import pygame_menu
 import random
 import sys
-
+import pygame
+import pygame_menu
 
 pygame.init()
 bg_img = pygame.image.load('змейка-шаржа-смешная-3626431.jpg')
@@ -24,6 +23,7 @@ pygame.display.set_caption('Змейка')
 timer = pygame.time.Clock()
 calibri = pygame.font.SysFont('calibri', 32)
 
+
 class Snake_Block:
     def __init__(self, x, y):
         self.x = x
@@ -37,10 +37,13 @@ class Snake_Block:
     def __eq__(self, other):
         return isinstance(other, Snake_Block) and self.x == other.x and self.y == other.y
 
+
 def draw_block(color, row, column):
     pygame.draw.rect(screen, color, [SIZE_BLOCK + column * SIZE_BLOCK + MARGIN * (column + 1),
                                      HEADER_MARGIN + SIZE_BLOCK + row * SIZE_BLOCK + MARGIN * (row + 1),
                                      SIZE_BLOCK, SIZE_BLOCK])
+
+
 def start_the_game():
     def get_random_empty_block():
         x = random.randint(0, COUNT_BLOCKS - 1)
@@ -50,6 +53,7 @@ def start_the_game():
             empty_block.x = random.randint(0, COUNT_BLOCKS - 1)
             empty_block.y = random.randint(0, COUNT_BLOCKS - 1)
         return empty_block
+
     snake_blocks = [Snake_Block(9, 8), Snake_Block(9, 9), Snake_Block(9, 10)]
     apple = get_random_empty_block()
     d_row = buf_row = 0
@@ -127,15 +131,13 @@ def start_the_game():
         snake_blocks.append(new_head)
         snake_blocks.pop(0)
 
-
         timer.tick(3 + speed)
-
 
 
 main_theme = pygame_menu.themes.THEME_ORANGE.copy()
 main_theme.set_background_color_opacity(0.5)
 menu = pygame_menu.Menu('', 220, 300,
-                       theme=main_theme)
+                        theme=main_theme)
 
 menu.add.text_input('Player :', default='_')
 menu.add.button('Play', start_the_game)
