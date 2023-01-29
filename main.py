@@ -7,11 +7,12 @@ pygame.init()
 bg_img = pygame.image.load('змейка-шаржа-смешная-3626431.jpg')
 COUNT_BLOCKS = 20
 SIZE_BLOCK = 20
-HEADER_COLOR = (0, 204, 153)
+HEADER_COLOR = (0, 204, 100)
 HEADER_MARGIN = 70
-SNAKE_COLOR = (0, 102, 0)
-FRAME_COLOR = (0, 255, 204)
-BLUE = (204, 255, 255)
+SNAKE_COLOR = (255, 255, 0)
+FRAME_COLOR = (100, 255, 204)
+BLUE = (204, 200, 255)
+BLACK = (0, 0 , 0)
 RED = (224, 0, 0)
 MARGIN = 1
 WHITE = (255, 255, 255)
@@ -22,6 +23,8 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption('Змейка')
 timer = pygame.time.Clock()
 calibri = pygame.font.SysFont('calibri', 32)
+score_font = pygame.font.SysFont("comicsansms", 35)
+res = 800
 
 
 class Snake_Block:
@@ -45,6 +48,7 @@ def draw_block(color, row, column):
 
 
 def start_the_game():
+
     def get_random_empty_block():
         x = random.randint(0, COUNT_BLOCKS - 1)
         y = random.randint(0, COUNT_BLOCKS - 1)
